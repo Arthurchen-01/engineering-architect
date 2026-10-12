@@ -118,7 +118,9 @@ engineering-architect/
         ├── 08_ip_block_and_egress_guard_architecture.md
         ├── 09_ecommerce_and_social_scraping_architecture.md
         ├── 10_learning_and_content_engine_architecture.md
-        └── 11_multiagent_and_tooling_matrix_architecture.md
+        ├── 11_multiagent_and_tooling_matrix_architecture.md
+        ├── 12_fleet_live_scripts_and_process_matrix.md
+        └── 13_recommendation_letter_architecture.md
 ```
 
 ---

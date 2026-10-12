@@ -2,7 +2,8 @@
 
 > **审计与归档元数据**
 > - **编制时间**：2026-10-07
-> - **纳管范围**：用户账号 `Arthurchen-01` 旗下全部 **25 个 GitHub 代码仓库** + **9 台在用云服务器机队**
+> - **最近修订**：2026-10-12（新增第 13 号架构规约：推荐信要求数据集；补记五四云-1106 承载角色）
+> - **纳管范围**：用户账号 `Arthurchen-01` 旗下全部 **25 个 GitHub 代码仓库** + **9 台在用云服务器机队** + **1 个受规约管辖的本地工作区**
 > - **定位**：解决多窗口、多服务器并发调度中的“人肉中继、代码漂移、并发竞争与反复修 Bug”问题，实现全自主规约驱动开发 (SDD)
 
 ---
@@ -15,7 +16,7 @@
 | **花屿云-1024** (3883) | 花屿云 | 10-24 | 17 天 | 16C**32G**/97G | `154.219.105.203:22` | **任务指挥中心** (samurai-tc :8790) + wbfarm 分片0 (:8765) + 留学数据 (14G) | 🟡 /tmp 占用高 (需转储) |
 | **五四云-620** (1030A) | 五四云 | 10-30 | 23 天 | 16C16G+**200G** | `156.225.28.208:22` | **Babra Replica 4000/54321** + 留痕台 (:8898) + wbfarm 跑号备用 | 🟢 正常 (挂载 200G 盘) |
 | **五四云-621** (1030B) | 五四云 | 10-30 | 23 天 | 16C16G+**200G** | `156.225.28.4:22` | **乐天控制台 (:8791)** + `lt` 源站 (80/443) + wbfarm 跑号 + 密正 (:8899) | 🟢 正常 (域名 200 OK) |
-| **五四云-1106** (657) ★ | 五四云 | 11-06 | **30 天** | 16C16G/30G+**200G** | `156.225.28.57:22` | **领英/FB反代控制台** (:8799) + **待建云端 DeepSeek Harness 公网服务台** | 🟢 正常 (负载 0.09, 14.5G空闲) |
+| **五四云-1106** (657) ★ | 五四云 | 11-06 | **30 天** | 16C16G/30G+**200G** | `156.225.28.57:22` | **领英/FB反代控制台** (:8799) + **待建云端 DeepSeek Harness 公网服务台** + **推荐信要求数据集工作区**（见 13 号规约，无监听端口） | 🟢 正常 (负载 0.09, 14.5G空闲) |
 | **量芯云-1011** (20013) | 量芯云 | 10-11 | **4 天** ⚠️ | 4C4G/39G | `154.94.225.214:22` | **wbfarm 分片 1** (:8765) + 闲鱼自动发货 (:8888) | 🔴 **急需续费** (钱包余额阻断) |
 | **量芯云-1030** (19411) | 量芯云 | 10-30 | 23 天 | 4C8G/39G | `156.224.28.101:**22222**` | **Telegram 记账机器人** (:8080) + 订单系统 (:8888) + **全网安全跳板** | 🟢 正常 (独立 22222 端口) |
 | **五四云-1021** (531) | 五四云 | 10-21 | 14 天 | 16C16G+**200G** | `156.225.28.62:22` | **词汇转写 vocab 源站** (:8765) + faster-whisper ASR + 乐天 7 分片采集矩阵 | 🟢 正常 (ASR 加速比 1.95x) |
@@ -29,7 +30,7 @@
 
 ## 二、 全项目架构规约库索引表 (Architectural Specifications Index)
 
-用户项目全域共细分为 12 大多服务器架构规约与全景文档，均已物理落盘并完成结构化验证：
+用户项目全域共细分为 13 大多服务器架构规约与全景文档，均已物理落盘并完成结构化验证：
 
 | 编号 | 架构规约文件与本地链接 | 核心纳管仓库 (GitHub) | 核心业务与抗 Bug 关键点 |
 | :--- | :--- | :--- | :--- |
@@ -45,6 +46,7 @@
 | **10** | [10_learning_and_content_engine_architecture.md](file:///D:/multiagent-architect/docs/fleet_architectures/10_learning_and_content_engine_architecture.md) | `Arthurchen-01/vocab`<br>`Arthurchen-01/zh-editor`<br>`Arthurchen-01/AP-Learning-Web`<br>`Arthurchen-01/AP-Learning-Web-01`<br>`Arthurchen-01/ap-tracker`<br>`Arthurchen-01/study-pod` | 日语初学者沉浸式听力句型分析（进击的巨人 S1 音轨对齐）、faster-whisper 1.95x 加速比、DOCX/TXT/MD 导出、AP 课程打卡 |
 | **11** | [11_multiagent_and_tooling_matrix_architecture.md](file:///D:/multiagent-architect/docs/fleet_architectures/11_multiagent_and_tooling_matrix_architecture.md) | `Arthurchen-01/three-agent-runtime-template`<br>`Arthurchen-01/my-ai-tools`<br>`Arthurchen-01/stock-shanzhang`<br>`Arthurchen-01/Heart-Beat-War--3.28`<br>`Arthurchen-01/achievements`<br>`Arthurchen-01/fighting-achievement`<br>`Arthurchen-01/could-coding`<br>`Arthurchen-01/chromebook-dragonfly-drive`<br>`Arthurchen-01/project-designs` | 三智能体协同闭环 (工程师-评审员-仲裁员)、规约驱动开发 (SDD)、缠论量化指标计算、游戏化成就激励、Chromebook 云开发桥接 |
 | **12** | [12_fleet_live_scripts_and_process_matrix.md](file:///D:/multiagent-architect/docs/fleet_architectures/12_fleet_live_scripts_and_process_matrix.md) | 全机队 9 台在用活跃服务器 | 2026-10-07 逐台内核真机探活：常驻脚本、运行进程、监听端口、Cron 定时任务、数据盘与 `/opt/` 目录全景总表 |
+| **13** | [13_recommendation_letter_architecture.md](file:///D:/multiagent-architect/docs/fleet_architectures/13_recommendation_letter_architecture.md) | 本地工作区 `<WORKSPACE>/推荐信`（非独立仓库） | 52/45/47 三套口径守恒、逐题字数真敲键盘实测、10 条刚性不变量（口径守恒 / 批次不覆盖 / 离线可重放 / 凭据不外发）、78+29 项端到端验收、7 张未结缺口任务卡 |
 
 ---
 
