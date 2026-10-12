@@ -32,8 +32,8 @@ with open(r"D:\服务器管理\srv.py", "r", encoding="utf-8") as f:
         if '"五四云-1106"' in line or '"156.225.28.57"' in line:
             pass
 
-# From previous discovery: root password for 657
-SERVER_PASS = ""
+# Read password from environment or local credentials manager
+SERVER_PASS = os.environ.get("FLEET_SERVER_PASS", "")
 
 def get_ssh():
     ssh = paramiko.SSHClient()
